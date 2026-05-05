@@ -8,7 +8,7 @@ import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
 const SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET ?? "my-super-secret-portfolio-key-2024"
+  process.env.JWT_SECRET || "fallback-secret-change-me-in-production"
 );
 
 const COOKIE_NAME = "portfolio_auth_token";

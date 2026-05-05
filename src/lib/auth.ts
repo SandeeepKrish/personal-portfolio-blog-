@@ -11,7 +11,7 @@ const ADMIN_PASSWORD = "admin123";
 
 // Secret key for JWT signing — in production, use an env variable
 const SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET ?? "my-super-secret-portfolio-key-2024"
+  process.env.JWT_SECRET || "fallback-secret-change-me-in-production"
 );
 
 const COOKIE_NAME = "portfolio_auth_token";

@@ -4,7 +4,7 @@ A full-stack personal portfolio website with a blog management system built with
 
 ## 🌐 Live Site
 
-> [https://sandeep-portfolio.vercel.app](https://sandeep-portfolio.vercel.app) *(update after deployment)*
+> https://sandeep-portfolio-fawn.vercel.app/
 
 ## 🛠️ Tech Stack
 

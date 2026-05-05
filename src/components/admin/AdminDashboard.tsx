@@ -25,7 +25,10 @@ export default function AdminDashboard({ initialPosts }: Props) {
 
   const refreshPosts = useCallback(async () => {
     const res = await fetch("/api/posts?admin=true");
-    if (res.ok) setPosts(await res.json());
+    if (res.ok) {
+      const data = (await res.json()) as BlogPost[];
+      setPosts(data);
+    }
   }, []);
 
   // ── Logout ──────────────────────────────────────────────────────────
@@ -85,7 +88,7 @@ export default function AdminDashboard({ initialPosts }: Props) {
       setEditingPost(null);
       showToast(isEdit ? "Post updated!" : "Post created!");
     } else {
-      const err = await res.json();
+      const err = (await res.json()) as { error?: string };
       showToast(err.error ?? "Save failed.", "error");
     }
   }

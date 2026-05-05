@@ -1,0 +1,41 @@
+[
+  {
+    "id": "1",
+    "title": "Building a Full-Stack AI Medical Agent with LangChain and RAG",
+    "slug": "building-ai-medical-agent-langchain-rag",
+    "excerpt": "A deep dive into how I built a conversational AI medical assistant using LangChain, vector databases, and a RAG pipeline to answer medical queries with accurate, contextual responses.",
+    "content": "# Building a Full-Stack AI Medical Agent with LangChain and RAG\n\nIn this post, I'll walk you through the architecture and implementation of an AI-powered medical assistant I built using LangChain, FAISS vector store, and the Retrieval-Augmented Generation (RAG) pipeline.\n\n## What is RAG?\n\nRetrieval-Augmented Generation (RAG) is a technique that combines the power of large language models with a knowledge retrieval system. Instead of relying solely on the model's training data, RAG retrieves relevant context from a custom knowledge base before generating a response.\n\n## Tech Stack\n\n- **Backend**: FastAPI + Python\n- **LLM**: OpenAI GPT-4\n- **Vector Store**: FAISS\n- **Embeddings**: OpenAI text-embedding-ada-002\n- **Orchestration**: LangChain\n- **Database**: PostgreSQL\n\n## Architecture Overview\n\nThe system works in three stages:\n\n1. **Indexing**: Medical documents are chunked, embedded, and stored in a FAISS vector database.\n2. **Retrieval**: On a user query, the top-k most semantically similar chunks are retrieved.\n3. **Generation**: The retrieved context and the query are fed into GPT-4 to generate an accurate, grounded response.\n\n## Key Challenges\n\nThe biggest challenge was ensuring the model stayed grounded in the retrieved context and didn't hallucinate medical information. I solved this by engineering precise system prompts that explicitly instructed the model to only use provided context.\n\n## Conclusion\n\nBuilding this agent taught me a lot about RAG pipelines, vector similarity search, and responsible AI development for sensitive domains like healthcare.",
+    "coverImage": "/blog-1.jpg",
+    "author": "Sandeep Yadav",
+    "tags": ["AI", "LangChain", "RAG", "Python", "FastAPI"],
+    "status": "published",
+    "createdAt": "2026-04-21T18:00:00Z",
+    "updatedAt": "2026-04-21T18:00:00Z"
+  },
+  {
+    "id": "2",
+    "title": "Deploying a Full-Stack E-Commerce App on AWS with S3 and CloudFront",
+    "slug": "deploying-ecommerce-aws-s3-cloudfront",
+    "excerpt": "How I migrated an e-commerce application from a local dev environment to AWS, using S3 for image storage, CloudFront for CDN, and EC2 for the backend.",
+    "content": "# Deploying a Full-Stack E-Commerce App on AWS with S3 and CloudFront\n\nDeploying a full-stack application to AWS can feel daunting, but with the right approach it's a smooth process. In this post I'll share exactly how I migrated the Jhumkeshwari e-commerce platform to AWS.\n\n## Architecture\n\n- **Frontend**: S3 Static Hosting + CloudFront CDN\n- **Backend**: EC2 (Node.js + Express)\n- **Database**: MongoDB Atlas (cloud-hosted)\n- **Image Storage**: S3 + CloudFront\n- **CI/CD**: AWS Amplify\n\n## Setting Up S3 for Image Storage\n\nI replaced local `multer` disk storage with `multer-s3` to stream uploads directly to S3. This eliminated the need to store images on the EC2 instance and made the app stateless.\n\n```js\nconst multerS3 = require('multer-s3');\nconst s3 = new AWS.S3();\n\nconst upload = multer({\n  storage: multerS3({\n    s3: s3,\n    bucket: process.env.S3_BUCKET_NAME,\n    key: (req, file, cb) => {\n      cb(null, `products/${Date.now()}-${file.originalname}`);\n    }\n  })\n});\n```\n\n## CloudFront for CDN\n\nWith CloudFront in front of S3, image delivery is fast globally. I updated all image URLs to use the CloudFront distribution URL instead of direct S3 URLs.\n\n## Lessons Learned\n\n- Always use IAM roles with least-privilege access for EC2\n- Enable CORS on your S3 bucket if the frontend is on a different domain\n- Use environment variables for all AWS credentials — never hardcode them",
+    "coverImage": "/blog-2.jpg",
+    "author": "Sandeep Yadav",
+    "tags": ["AWS", "S3", "CloudFront", "DevOps", "Node.js"],
+    "status": "published",
+    "createdAt": "2026-04-14T11:00:00Z",
+    "updatedAt": "2026-04-14T11:00:00Z"
+  },
+  {
+    "id": "3",
+    "title": "Next.js 14 App Router: A Practical Guide for Beginners",
+    "slug": "nextjs-14-app-router-practical-guide",
+    "excerpt": "The App Router in Next.js 14 is a game-changer. This guide covers file-based routing, server components, data fetching patterns, and more with practical examples.",
+    "content": "# Next.js 14 App Router: A Practical Guide for Beginners\n\nNext.js 14 introduces the App Router as the default way to build applications. In this guide, I'll cover the fundamentals through practical examples.\n\n## Key Concepts\n\n### File-Based Routing\n\nEach folder in `app/` represents a route segment. A `page.tsx` file makes it publicly accessible.\n\n```\napp/\n  page.tsx          → /\n  about/page.tsx    → /about\n  blog/[slug]/page.tsx → /blog/:slug\n```\n\n### Server vs. Client Components\n\nBy default, all components in the App Router are **Server Components**. They render on the server and don't ship JavaScript to the client. For interactive components, add `'use client'` at the top.\n\n### Data Fetching\n\nServer components can be `async` and fetch data directly:\n\n```tsx\n// Server Component\nexport default async function BlogPage() {\n  const posts = await fetchPosts();\n  return <PostList posts={posts} />;\n}\n```\n\n## Route Handlers (API Routes)\n\nInstead of `pages/api/`, use `app/api/route.ts`:\n\n```ts\nexport async function GET(request: Request) {\n  return Response.json({ message: 'Hello!' });\n}\n```\n\n## Conclusion\n\nThe App Router paradigm is powerful once you understand the server/client boundary. Start simple, add `'use client'` only when you need interactivity, and let the server do the heavy lifting.",
+    "coverImage": "/blog-3.jpg",
+    "author": "Sandeep Yadav",
+    "tags": ["Next.js", "React", "TypeScript", "Web Development"],
+    "status": "draft",
+    "createdAt": "2026-05-01T10:00:00Z",
+    "updatedAt": "2026-05-01T10:00:00Z"
+  }
+]

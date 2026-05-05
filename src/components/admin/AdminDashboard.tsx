@@ -203,7 +203,11 @@ export default function AdminDashboard({ initialPosts }: Props) {
                             {post.status}
                           </span>
                           <span className="text-xs text-slate-500">
-                            {new Date(post.updatedAt).toLocaleDateString()}
+                            {new Date(post.updatedAt).toLocaleDateString("en-US", {
+                              month: "numeric",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
                           </span>
                         </div>
                         <h3 className="font-semibold text-white truncate">{post.title}</h3>

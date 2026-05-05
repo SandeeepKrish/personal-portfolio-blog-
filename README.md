@@ -37,8 +37,8 @@ A full-stack personal portfolio website with a blog management system built with
 
 | Tool | How It Was Used | Contribution |
 |---|---|---|
-| **Antigravity (Google DeepMind)** | Generated all pages, components, API routes, auth middleware, data layer, CSS animations, and README | ~85% of code |
-| **Manual coding** | Custom persona content (bio, projects, skills), fine-tuning designs, testing flow | ~15% of code |
+| **Antigravity (Google DeepMind)** | Generated all pages, components, API routes, auth middleware, data layer, CSS animations, and README | ~80% of code |
+| **Manual coding** | Custom persona content (bio, projects, skills), fine-tuning designs, testing flow | ~20% of code |
 
 ### Was the AI-generated code understood?
 Yes — every file generated was reviewed and the purpose of each section is clear:
